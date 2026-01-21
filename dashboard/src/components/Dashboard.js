@@ -28,7 +28,7 @@ const Dashboard = () => {
 
     if (!userEmail) {
       // ❌ Not logged in → go to frontend signup
-      window.location.href = "https://zerodha121.netlify.app/signup";
+      window.location.href = "https://zerodha121.netlify.app";
     }
   }, []);
   return (
@@ -52,4 +52,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
 
