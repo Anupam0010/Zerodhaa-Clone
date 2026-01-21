@@ -24,8 +24,9 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.options("*", cors());
 app.use(express.json());
-app.use(bodyParser.json());
+
 // OTP temporary store
 const otpStore = {};
 
@@ -326,7 +327,7 @@ app.get("/", (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 3002;
+
 
 app.listen(PORT,()=>{
     console.log("app started");
@@ -334,4 +335,5 @@ app.listen(PORT,()=>{
     console.log("DB connected");
 
 })
+
 
