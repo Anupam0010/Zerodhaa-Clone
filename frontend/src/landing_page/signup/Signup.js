@@ -78,7 +78,7 @@ function Signup() {
         // navigate("http://localhost:3000"); // 🔥 REDIRECT
         window.location.href = `https://delicate-kangaroo-dashboard.netlify.app?email=${encodeURIComponent(email)}`;
 
-        )}`;
+        
       } else {
         alert(data.message);
       }
@@ -511,4 +511,5 @@ export default Signup;
 // }
 
 // export default Signup;
+
 
