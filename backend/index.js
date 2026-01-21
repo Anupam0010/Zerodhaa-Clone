@@ -14,7 +14,17 @@ const url=process.env.MONGO_URL;
 
 
 const app=express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://zerodha121.netlify.app",
+      "https://delicate-kangaroo-dashboard.netlify.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+app.use(express.json());
 app.use(bodyParser.json());
 // OTP temporary store
 const otpStore = {};
@@ -316,11 +326,12 @@ app.get("/", (req, res) => {
 });
 
 
+const PORT = process.env.PORT || 3002;
 
-
-app.listen(3002,()=>{
+app.listen(PORT,()=>{
     console.log("app started");
     mongoose.connect(url);
     console.log("DB connected");
 
 })
+
