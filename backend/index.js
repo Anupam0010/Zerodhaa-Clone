@@ -311,6 +311,9 @@ app.post("/verify-email-otp", (req, res) => {
 });
 
 
+app.get("/", (req, res) => {
+  res.send("Zerodha Backend is Live 🚀");
+});
 
 
 
@@ -319,4 +322,5 @@ app.listen(3002,()=>{
     console.log("app started");
     mongoose.connect(url);
     console.log("DB connected");
+
 })
