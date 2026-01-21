@@ -8,6 +8,8 @@ function Signup() {
   const [step, setStep] = useState(1); // 1=email, 2=otp
   const [timer, setTimer] = useState(60);
   const [canResend, setCanResend] = useState(false);
+  const API_URL = process.env.REACT_APP_API_URL;
+
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -26,7 +28,8 @@ function Signup() {
     }
 
     try {
-      const res = await fetch("http://localhost:3002/send-email-otp", {
+      const res = await fetch(`${API_URL}/send-email-otp`, {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -59,7 +62,8 @@ function Signup() {
   // 🔐 Verify OTP
   const verifyOtp = async () => {
     try {
-      const res = await fetch("http://localhost:3002/verify-email-otp", {
+      const res = await fetch(`${API_URL}/verify-email-otp`, {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp }),
@@ -72,8 +76,8 @@ function Signup() {
         // localStorage.setItem("isLoggedIn", "true");
         //   localStorage.setItem("userEmail", email); // ✅ SAVE EMAIL
         // navigate("http://localhost:3000"); // 🔥 REDIRECT
-        window.location.href = `http://localhost:3000?email=${encodeURIComponent(
-          email
+        window.location.href = `https://delicate-kangaroo-dashboard.netlify.app?email=${encodeURIComponent(email)}`;
+
         )}`;
       } else {
         alert(data.message);
@@ -507,3 +511,4 @@ export default Signup;
 // }
 
 // export default Signup;
+
