@@ -277,6 +277,8 @@ const transporter = require("./utils/mailer");
 
 app.post("/send-email-otp", async (req, res) => {
   const { email } = req.body;
+  console.log("EMAIL_USER:", process.env.EMAIL_USER);
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!email || !emailRegex.test(email)) {
@@ -335,6 +337,7 @@ app.listen(PORT,()=>{
     console.log("DB connected");
 
 })
+
 
 
 
