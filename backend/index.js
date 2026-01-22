@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express=require("express");
 const mongoose=require("mongoose");
-const bodyParser=require("body-parser");
 const cors=require("cors");
 const axios = require("axios");
 const HoldingsModel  = require("./model/HoldingsModel");
@@ -24,7 +23,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.options("*", cors());
 app.use(express.json());
 
 // OTP temporary store
@@ -335,5 +333,6 @@ app.listen(PORT,()=>{
     console.log("DB connected");
 
 })
+
 
 
