@@ -13,18 +13,16 @@ const url=process.env.MONGO_URL;
 
 
 const app=express();
-app.use(
-  cors({
-    origin: [
-      "https://zerodha121.netlify.app",
-      "https://delicate-kangaroo-dashboard.netlify.app",
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-app.options("/send-email-otp", cors());
-app.options("/verify-email-otp", cors());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.use(express.json());
 
 // OTP temporary store
@@ -337,6 +335,7 @@ app.listen(PORT,()=>{
     console.log("DB connected");
 
 })
+
 
 
 
