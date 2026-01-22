@@ -23,6 +23,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.options("/send-email-otp", cors());
+app.options("/verify-email-otp", cors());
 app.use(express.json());
 
 // OTP temporary store
@@ -333,6 +335,7 @@ app.listen(PORT,()=>{
     console.log("DB connected");
 
 })
+
 
 
 
